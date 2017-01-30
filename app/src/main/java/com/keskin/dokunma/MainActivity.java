@@ -1,28 +1,4 @@
-package com.keskin.dokunma;
-
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.os.*;
-import android.view.*;
-import android.widget.*;
-import java.util.*;
-
-public class MainActivity extends Activity 
 {
-	Double i=0.0;
-	int intime=0;
-	int scorel=0;
-	int hiz=0;
-	int red=0;
-	int green=0;
-	int yellow=0;
-	int score=0;
-	int hiscore=0;
-	Random r = new Random();
-	@Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 		final Button boost =(Button) findViewById(R.id.t);
@@ -77,11 +53,11 @@ public class MainActivity extends Activity
 					intime=0;
 					hiz=score-scorel;
 					scorel=score;
-					if (hiz >= 15){
+					if (hiz >= 15 ){
 					    start.setBackgroundColor(Color.GREEN);
 						green=green+1;
 					}
-					if (hiz<15){
+					if (hiz<15 && hiz>10){
 					    start.setBackgroundColor(Color.YELLOW);
 						yellow=yellow+1;
 					}
@@ -98,24 +74,3 @@ public class MainActivity extends Activity
 		h.removeCallbacks(u);
 		h.post(u);
     }
-	public int upscore (View view){
-		score = score + 1;
-		int red = 255-r.nextInt(200);
-	    int green =255- r.nextInt(200);
-		int blue = 255-r.nextInt(200);
-		view.setBackgroundColor(Color.rgb(red,green,blue));
-		//view.(Color.rgb(255-red,255-green,255-blue));
-		return 0;
-	}
-	public void boostenable (View view){
-		Button boost = (Button) findViewById(R.id.t);
-		boost.setEnabled(true);
-		score =0;
-		i=0.0;
-	}
-	public void scores (View view){
-		Intent  scr= new Intent(this,scores.class);
-		startActivity(scr);
-	}
-	
-}
